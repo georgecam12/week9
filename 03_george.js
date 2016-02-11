@@ -1,12 +1,11 @@
 port = process.argv[2];
-console.log("port",port);
+var port = (process.argv[2] ? Number(process.argv[2]) : 2000);
 var net = require('net');
-console.log("net",net);
-var server= net.createServer(respond);
-function respond(socket){
-	d = new Date();
-	socket.end(d.toString());
-}
+var server = net.createServer(respond);
 
+function respond(socket) {
+    d = new Date();
+    socket.end(d.getHours());
+}
 console.log("Listening on port ", port);
 server.listen(port);
